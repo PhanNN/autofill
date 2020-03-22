@@ -1,0 +1,119 @@
+{
+  "fields": [
+    {
+      "type": "textbox",
+      "selector": "#deformField1",
+      "value": "John"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField2",
+      "value": "john@gmail.com"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField3",
+      "value": "031-123112233"
+    },
+    {
+      "type": "checkbox",
+      "selector": "#deformField4",
+      "value": "['Individual', 'Fund']"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField6",
+      "value": "Yes"
+    },
+    {
+      "type": "checkbox",
+      "selector": "#deformField8",
+      "value": "['South Atlantic', 'West Mountain']"
+    },
+    {
+      "type": "checkbox",
+      "selector": "#deformField10",
+      "value": "['Multifamily', 'Healthcare']"
+    },
+    {
+      "type": "checkbox",
+      "selector": "#deformField12",
+      "value": "['Value Add', 'Opportunistic']"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField14",
+      "value": "LinkedIn"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField18",
+      "value": "Other"
+    },
+    {
+      "type": "checkbox",
+      "selector": "#deformField20",
+      "value": "['Sole Ownership', 'Partnership']"
+    },
+    {
+      "type": "checkbox",
+      "selector": "#deformField22",
+      "value": "['Debt', 'Secondaries']"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField24",
+      "value": "Recourse"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField26",
+      "value": "Yes"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField30",
+      "value": "7"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField34",
+      "value": "20"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField38",
+      "value": "10000"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField42",
+      "value": "30000"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField46",
+      "value": "5"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField48",
+      "value": "1.50"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField50",
+      "value": "1"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField52",
+      "value": "1"
+    },
+    {
+      "type": "textbox",
+      "selector": "#deformField56",
+      "value": "Additional Submission Comments"
+    }
+  ]
+}

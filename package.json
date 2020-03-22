@@ -1,0 +1,17 @@
+{
+  "name": "Autofill",
+  "version": "1.0.0",
+  "description": "Autofill - auto fill data into form and submit",
+  "main": "index.js",
+  "author": "phannn (Phan Nguyen)",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0",
+    "puppeteer": "^2.1.1"
+  }
+}
