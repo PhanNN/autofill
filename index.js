@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const { fields } = require('./data.json');
 const axios = require('axios');
 require('dotenv').config();
+const { handleResult, delay, asyncForEach } = require('./util.js');
 
 const EMPTY_STRING = "";
 
@@ -16,6 +17,8 @@ const EMPTY_STRING = "";
   const res = await registerToken();
 
   if (res !== EMPTY_STRING) {
+    delay(10000);
+
     const ggToken = await getCaptchaToken(res);
 
     await putGGToken(page, ggToken);
@@ -37,12 +40,6 @@ const parseValue = async (fields, page) => {
       await page.type(field.selector, field.value);
     }
   });
-}
-
-const asyncForEach = async (array, callback) => {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
 }
 
 const putGGToken = async (page, token) => {
@@ -81,16 +78,3 @@ const getCaptchaToken = async (id) => {
   }
   return EMPTY_STRING;
 }
-
-const handleResult = (res) => {
-  console.log(res);
-  if (res.data) {
-    const body = res.data;
-    if (body.status === 1) {
-      return body.request;
-    }
-  }
-  return EMPTY_STRING;
-}
-
-const delay = (ms) => new Promise(res => setTimeout(res, ms));
