@@ -9,6 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "@hapi/hapi": "^19.1.1",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",

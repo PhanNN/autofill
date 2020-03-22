@@ -1,3 +1,5 @@
+const EMPTY_STRING = "";
+
 const handleResult = (res) => {
   if (res.data) {
     const body = res.data;
@@ -17,4 +19,4 @@ const asyncForEach = async (array, callback) => {
   }
 };
 
-module.exports = { handleResult, delay, asyncForEach }
+module.exports = { EMPTY_STRING, handleResult, delay, asyncForEach }

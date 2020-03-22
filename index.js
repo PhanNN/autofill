@@ -1,12 +1,38 @@
 const puppeteer = require('puppeteer');
 const { fields } = require('./data.json');
 const axios = require('axios');
+const Hapi = require('@hapi/hapi');
 require('dotenv').config();
-const { handleResult, delay, asyncForEach } = require('./util.js');
+const { EMPTY_STRING, handleResult, delay, asyncForEach } = require('./util.js');
 
-const EMPTY_STRING = "";
+const init = async () => {
 
-(async () => {
+  const server = Hapi.server({
+    port: 3000,
+    host: 'localhost'
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/process',
+    handler: (request, h) => {
+      handleMsg();
+      return 'Running';
+    }
+  });
+
+  await server.start();
+  console.log('Server running on %s', server.info.uri);
+};
+
+process.on('unhandledRejection', (err) => {
+  console.log(err);
+  process.exit(1);
+});
+
+init();
+
+const handleMsg = async () => {
   const browser = await puppeteer.launch({
     headless: false
   });
@@ -23,16 +49,21 @@ const EMPTY_STRING = "";
 
     await putGGToken(page, ggToken);
 
-    const [response] = await Promise.all([
-      page.waitForNavigation(),
-      page.click('#lead-capture-form-btn-submit'),
-    ]);
+    try {
+      let wait = page.waitForNavigation({ timeout: 5000 });
+      await page.click('#lead-capture-form-btn-submit');
+      await wait;
+    } catch (e) {
+      // tricky
+      console.error(e);
+    }
+
   } else {
     console.log("Can't pass Captcha!!!");
   }
 
-  await browser.close();
-})();
+  browser.close();
+}
 
 const parseValue = async (fields, page) => {
   await asyncForEach(fields, async (field) => {
