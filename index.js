@@ -89,7 +89,8 @@ const parseCheckbox = async (page, idPrefix, values) => {
     
     const elParent = (await ele.$x('..'))[0];
     const text = await page.evaluate(elParent => elParent.textContent, elParent);
-    if (values.includes(text.trim())) {
+    const json = JSON.parse(values);
+    if (json.includes(text.trim())) {
       await page.evaluate(element => {
           return element.click();
       }, ele);

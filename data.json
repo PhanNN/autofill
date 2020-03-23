@@ -18,7 +18,7 @@
     {
       "type": "checkbox",
       "selector": "#deformField4",
-      "value": "['Individual', 'Fund']"
+      "value": "[\"Individual\", \"Fund\"]"
     },
     {
       "type": "textbox",
@@ -28,17 +28,17 @@
     {
       "type": "checkbox",
       "selector": "#deformField8",
-      "value": "['South Atlantic', 'West Mountain']"
+      "value": "[\"South Atlantic\", \"West Mountain\"]"
     },
     {
       "type": "checkbox",
       "selector": "#deformField10",
-      "value": "['Multifamily', 'Healthcare']"
+      "value": "[\"Multifamily\", \"Healthcare\"]"
     },
     {
       "type": "checkbox",
       "selector": "#deformField12",
-      "value": "['Value Add', 'Opportunistic']"
+      "value": "[\"Value Add\", \"Opportunistic\"]"
     },
     {
       "type": "textbox",
@@ -53,12 +53,12 @@
     {
       "type": "checkbox",
       "selector": "#deformField20",
-      "value": "['Sole Ownership', 'Partnership']"
+      "value": "[\"Sole Ownership\", \"Partnership\"]"
     },
     {
       "type": "checkbox",
       "selector": "#deformField22",
-      "value": "['Debt', 'Secondaries']"
+      "value": "[\"Debt\", \"Secondaries\"]"
     },
     {
       "type": "textbox",
