@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const { fields } = require('./data.json');
+// const { fields } = require('./data.json');
 const axios = require('axios');
 const Hapi = require('@hapi/hapi');
 require('dotenv').config();
@@ -16,8 +16,11 @@ const init = async () => {
     method: 'POST',
     path: '/process',
     handler: (request, h) => {
-      handleMsg();
-      return 'Running';
+      if (request.payload) {
+        handleMsg(request.payload.fields);
+        return 'Running';
+      }
+      return 'Check payload and submit again.'
     }
   });
 
@@ -32,7 +35,7 @@ process.on('unhandledRejection', (err) => {
 
 init();
 
-const handleMsg = async () => {
+const handleMsg = async (fields) => {
   const browser = await puppeteer.launch({
     headless: false
   });
@@ -67,8 +70,29 @@ const handleMsg = async () => {
 
 const parseValue = async (fields, page) => {
   await asyncForEach(fields, async (field) => {
-    if (field.type === 'textbox') {
-      await page.type(field.selector, field.value);
+    switch (field.type) {
+      case 'textbox':
+        await page.type(field.selector, field.value);
+      break;
+      case 'checkbox':
+        await parseCheckbox(page, field.selector.substring(1), field.value);
+      break;
+      default:
+      break;
+    }
+  });
+}
+
+const parseCheckbox = async (page, idPrefix, values) => {
+  const elements = await page.$$(`input[id^="${idPrefix}"]`);
+  await asyncForEach(elements, async (ele) => {
+    
+    const elParent = (await ele.$x('..'))[0];
+    const text = await page.evaluate(elParent => elParent.textContent, elParent);
+    if (values.includes(text.trim())) {
+      await page.evaluate(element => {
+          return element.click();
+      }, ele);
     }
   });
 }
