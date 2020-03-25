@@ -9,7 +9,7 @@ const init = async () => {
 
   const server = Hapi.server({
     port: 3000,
-    host: 'localhost'
+    host: '0.0.0.0'
   });
 
   server.route({
@@ -37,7 +37,7 @@ init();
 
 const handleMsg = async (fields) => {
   const browser = await puppeteer.launch({
-    headless: false
+    headless: true
   });
   const page = await browser.newPage();
   await page.goto(process.env.PAGE_URL);
