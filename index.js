@@ -8,17 +8,17 @@ const { EMPTY_STRING, handleResult, delay, asyncForEach } = require('./util.js')
 const init = async () => {
 
   const server = Hapi.server({
-    port: 3000,
+    port: 8080,
     host: '0.0.0.0'
   });
 
   server.route({
     method: 'POST',
     path: '/process',
-    handler: (request, h) => {
+    handler: async (request, h) => {
       if (request.payload) {
-        handleMsg(request.payload.fields);
-        return 'Running';
+        await handleMsg(request.payload.fields);
+        return 'OK';
       }
       return 'Check payload and submit again.'
     }
@@ -36,12 +36,14 @@ process.on('unhandledRejection', (err) => {
 init();
 
 const handleMsg = async (fields) => {
+  console.time("msg");
   const browser = await puppeteer.launch({
-    headless: true
+    headless: true,
+    args: ['--no-sandbox']
   });
   const page = await browser.newPage();
-  await page.goto(process.env.PAGE_URL);
 
+  await page.goto(process.env.PAGE_URL);
   await parseValue(fields, page);
   const res = await registerToken();
 
@@ -65,6 +67,7 @@ const handleMsg = async (fields) => {
     console.log("Can't pass Captcha!!!");
   }
 
+  console.timeEnd("msg")
   browser.close();
 }
 
