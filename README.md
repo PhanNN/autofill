@@ -35,4 +35,4 @@ Package using selenium to fill form and submit (with Google Captchar passing)
 - [x] Finish project
 - [ ] Support more input types
 - [ ] Support more Captchar methods
-- [ ] Extract and build auto submit only (not depend on server api code)
+- [ ] Extract, build auto submit module and publish as node module (not depend on server api code)
