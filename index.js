@@ -63,7 +63,7 @@ const handleMsg = async (fields) => {
     try {
       //let wait = page.waitForNavigation({ timeout: 10000 });
       await page.click('#lead-capture-form-btn-submit');
-      await wait;
+      
     } catch (e) {
       // tricky
       console.error(e);
