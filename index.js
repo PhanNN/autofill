@@ -56,12 +56,12 @@ const handleMsg = async (fields) => {
     delay(10000);
     console.log('getting captcha token')
     const ggToken = await getCaptchaToken(res);
-    console.log('after put token')
+    console.log('before put token')
     await putGGToken(page, ggToken);
     console.log('after put token')
 
     try {
-      let wait = page.waitForNavigation({ timeout: 10000 });
+      //let wait = page.waitForNavigation({ timeout: 10000 });
       await page.click('#lead-capture-form-btn-submit');
       await wait;
     } catch (e) {
