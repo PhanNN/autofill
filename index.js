@@ -38,7 +38,7 @@ init();
 const handleMsg = async (fields) => {
   console.time("msg");
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: ['--no-sandbox']
   });
   const page = await browser.newPage();
@@ -51,8 +51,9 @@ const handleMsg = async (fields) => {
     delay(10000);
 
     const ggToken = await getCaptchaToken(res);
-
+    console.log('after put token')
     await putGGToken(page, ggToken);
+    console.log('after put token')
 
     try {
       let wait = page.waitForNavigation({ timeout: 10000 });
