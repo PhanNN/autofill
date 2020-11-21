@@ -36,20 +36,25 @@ process.on('unhandledRejection', (err) => {
 init();
 
 const handleMsg = async (fields) => {
-  console.time("msg");
+  console.time("starting");
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox']
   });
+  console.log('getting browser')
   const page = await browser.newPage();
+  console.log('got browser1')
 
   await page.goto(process.env.PAGE_URL);
+  console.log('navigated')
   await parseValue(fields, page);
+  console.log('parsed values')
   const res = await registerToken();
+  console.log('got register token')
 
   if (res !== EMPTY_STRING) {
     delay(10000);
-
+    console.log('getting captcha token')
     const ggToken = await getCaptchaToken(res);
     console.log('after put token')
     await putGGToken(page, ggToken);
