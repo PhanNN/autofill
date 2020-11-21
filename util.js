@@ -3,6 +3,7 @@ const EMPTY_STRING = "";
 const handleResult = (res) => {
   if (res.data) {
     const body = res.data;
+    console.log(body);
     if (body.status === 1) {
       return body.request;
     }

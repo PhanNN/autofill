@@ -38,7 +38,7 @@ init();
 const handleMsg = async (fields) => {
   console.time("msg");
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     args: ['--no-sandbox']
   });
   const page = await browser.newPage();
@@ -55,7 +55,7 @@ const handleMsg = async (fields) => {
     await putGGToken(page, ggToken);
 
     try {
-      let wait = page.waitForNavigation({ timeout: 5000 });
+      let wait = page.waitForNavigation({ timeout: 10000 });
       await page.click('#lead-capture-form-btn-submit');
       await wait;
     } catch (e) {
@@ -111,17 +111,20 @@ const putGGToken = async (page, token) => {
 
 const registerToken = async () => {
   try {
+    console.log('BEGIN REGISTER TOKEN');
     const res = await axios.post(`https://2captcha.com/in.php?json=1&key=${process.env.CAPTCHA_API_KEY}&method=userrecaptcha&googlekey=${process.env.GOOGLE_KEY}&pageurl=${process.env.PAGE_URL}`);
 
     return await handleResult(res);
   } catch (error) {
-    console.error(error)
+    console.log('REGISTER TOKEN - HAS ERROR');
+    console.log(error)
   }
   return EMPTY_STRING;
 }
 
 const getCaptchaToken = async (id) => {
   try {
+    console.log('BEGIN GET TOKEN');
     const res = await axios.get(`https://2captcha.com/res.php?json=1&key=${process.env.CAPTCHA_API_KEY}&action=get&id=${id}`);
 
     const token = await handleResult(res);
@@ -133,7 +136,7 @@ const getCaptchaToken = async (id) => {
 
     return await getCaptchaToken(id);
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
   return EMPTY_STRING;
 }
