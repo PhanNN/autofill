@@ -1,5 +1,5 @@
 # autofill
-Package using selenium to fill form and submit (with Google Captchar passing)
+Package using selenium to fill form and submit (with Google Captcha passing)
 
 ## Env
 * **CAPTCHA_API_KEY** - Captchar api key (get from **2captcha.com**)
